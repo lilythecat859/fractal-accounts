@@ -1,0 +1,13 @@
+syntax = "proto3";
+package fractal.user;
+
+service User {
+  rpc GetUser (GetUserReq) returns (UserRes);
+}
+
+message GetUserReq { string user_id = 1; }
+
+message UserRes {
+  string user_id = 1;
+  string username = 2;
+}
