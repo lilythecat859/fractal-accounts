@@ -1,0 +1,6 @@
+/target
+/dist
+*.log
+.env
+*.db
+.DS_Store
