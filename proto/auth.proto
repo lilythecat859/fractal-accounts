@@ -1,0 +1,21 @@
+syntax = "proto3";
+package fractal.auth;
+
+service Auth {
+  rpc Register (RegisterReq) returns (AuthRes);
+  rpc Login    (LoginReq)    returns (AuthRes);
+}
+
+message RegisterReq {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginReq {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthRes {
+  string token = 1;
+}
