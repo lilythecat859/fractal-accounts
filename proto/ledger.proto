@@ -1,0 +1,21 @@
+syntax = "proto3";
+package fractal.ledger;
+
+service Ledger {
+  rpc CreateEntry (CreateEntryReq) returns (EntryRes);
+  rpc GetEntries   (GetEntriesReq)   returns (EntryList);
+}
+
+message CreateEntryReq {
+  string user_id = 1;
+  int64  amount_cents = 2;
+  string currency = 3;  # e.g. "USD"
+}
+
+message EntryRes {
+  string entry_id = 1;
+  int64  balance_cents = 2;
+}
+
+message GetEntriesReq { string user_id = 1; }
+message EntryList { repeated EntryRes entries = 1; }
