@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Fractal Accounts
+  version: 0.1.0
+servers:
+  - url: https://api.fractal.test
+paths:
+  /register:
+    post:
+      summary: create user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterReq'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthRes'
+  /login:
+    post:
+      summary: obtain JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginReq'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthRes'
+components:
+  schemas:
+    RegisterReq:
+      type: object
+      required: [username, password]
+      properties:
+        username: { type: string, minLength: 3 }
+        password: { type: string, minLength: 8 }
+    LoginReq:
+      type: object
+      required: [username, password]
+      properties:
+        username: { type: string }
+        password: { type: string }
+    AuthRes:
+      type: object
+      properties:
+        token: { type: string }
