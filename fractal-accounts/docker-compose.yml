@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports: ["5432:5432"]
+    volumes:
+      - pg:/var/lib/postgresql/data
+
+  auth-svc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: auth
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/fractal
+      RUST_LOG: debug
+    ports: ["8080:8080"]
+    depends_on: [postgres]
+
+  user-svc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: user
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/fractal
+    ports: ["8081:8080"]
+    depends_on: [postgres]
+
+  migrator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migrator
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/fractal
+    depends_on: [postgres]
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    ports: ["3000:3000"]
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - grafana:/var/lib/grafana
+
+volumes:
+  pg:
+  grafana:
