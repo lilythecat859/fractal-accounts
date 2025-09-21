@@ -29,7 +29,8 @@ Cloud-native micro-services for user & ledger management.
 git clone <repo>
 cd fractal-accounts
 docker compose up --build
-Copy
+
+
 service	port
 auth-svc	8080
 user-svc	8081
