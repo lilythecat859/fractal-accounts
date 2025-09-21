@@ -13,6 +13,8 @@ auth-svc :8080
 user-svc :8081
 grafana  :3000
 
+## quick start
+```bash
 
 ## stack
 - Rust + Tokio + gRPC / REST
