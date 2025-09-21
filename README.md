@@ -29,12 +29,23 @@ Cloud-native micro-services for user & ledger management.
 git clone <repo>
 cd fractal-accounts
 docker compose up --build
-
-
+Copy
 service	port
 auth-svc	8080
 user-svc	8081
 grafana	3000
 deploy
+cd terraform
+terraform init
+terraform apply
+Copy
+load test
+./scripts/load-test.sh
+Copy
+release
+./scripts/release.sh   # tags and pushes docker images
+Copy
+licence
+MIT
 
--------------------------------------------------
+-
