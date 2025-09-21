@@ -13,6 +13,10 @@ auth-svc :8080
 user-svc :8081
 grafana  :3000
 
+
+# fractal-accounts
+Cloud-native micro-services for user & ledger management.
+
 ## stack
 - Rust + Tokio + gRPC / REST
 - Postgres (RDS)
@@ -25,7 +29,11 @@ grafana  :3000
 git clone <repo>
 cd fractal-accounts
 docker compose up --build
-
- 
+Copy
+service	port
+auth-svc	8080
+user-svc	8081
+grafana	3000
+deploy
 
 -------------------------------------------------
