@@ -30,5 +30,3 @@ docker compose up --build
  
 
 -------------------------------------------------
-Next message: `terraform/`, `helm/`, `.github/workflows/`, and the three service crates (auth, user, ledger) with full proto definitions, tests, and Grafana dashboards.
- 
